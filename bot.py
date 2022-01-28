@@ -16,11 +16,21 @@ client = discord.Client()
 async def on_ready():
     print(f'{client.user} online.')
 
-#when a message has been sent
+#when a message has been sent...
 async def on_message(message):
+    # initialising lists of users and responses to them
     foolsList = [680172801214382200, 516397002268082186]
-    responseList = ["stop talking", "fool", "poopoo head", "shut up"] # common responses to fools on the internet
-    if (foolsList.contains(message.author.id)): # if it's someone in foolsList...
-        await message.channel.send(random.choice(responseList)) #...give one of those common responses.
+    coolsList = [520252893396336642, 211903495362576384]
+
+    foolResponse = ["stop talking", "fool", "poopoo head", "shut up"]
+    coolResponse = ["hi!", "same", "you're so cool", "i love you"]
+    
+    # if a certain user is detected, respond accordingly
+    if (message.author.id in foolsList):
+        print (random.choice(foolResponse))
+        await message.general.send(random.choice(foolResponse))
+    if (message.author.id in coolsList):
+        print (random.choice(coolResponse))
+        await message.channel.send(random.choice(coolResponse))
 
 client.run(token)
